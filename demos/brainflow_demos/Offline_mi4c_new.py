@@ -39,6 +39,7 @@ from metabci.brainda.algorithms.utils.visualization import attentionWeight_Visua
 from metabci.brainda.paradigms import MotorImagery
 from metabci.brainda.datasets.ustb2025mi4c import USTB2025MI4C
 from metabci.brainflow.amplifiers import OpenBCIInputParams, OpenBCIShim, BoardIds
+from metabci.brainflow.workers import command_output
 
 from datasets import MetaBCIData
 from mne.filter import resample
