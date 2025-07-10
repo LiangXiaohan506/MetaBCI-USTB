@@ -30,7 +30,7 @@
 
 需要将MetaMCI离线demo数据“MI”放到“/demos/brainflow_demos/data”文件夹下面。
 
-制作的听声辨位游戏的APK安装文件下载地址为：[(metabcites791.apk.1)](https://drive.google.com/file/d/1FN9KyAnlG2NWmN0M2kGu_J3Ve9mmhP_1/view?usp=sharing”)，进行在线功能测试时需要将该安装包拷贝并安装到PICO 4 Uitra中。
+制作的听声辨位游戏的APK安装文件[metabcites791.apk.1](https://drive.google.com/file/d/1FN9KyAnlG2NWmN0M2kGu_J3Ve9mmhP_1/view?usp=sharing”)，进行在线功能测试时需要将该安装包拷贝并安装到PICO 4 Uitra中。
 
 进行测试的文件主要为：stim_demo.py、Offline_mi4c_new.py和Online_mi4c_new.py三个文件。在stim_demo.py和Offline_mi4c_new.py文件上的详细的测试过程在“5.新增功能点说明”和“6.修复功能点说明”部分进行了详细的说明。下面主要介绍Online_mi4c_new.py文件的测试流程：
 * 首先确保脑电信号采集和程序运行在同一个主机上，然后将主机和PICO 4 Uitra连接到同一个路由器；
