@@ -659,3 +659,27 @@ if __name__ == '__main__':
     # while True:
     #     data = board.get_current_board_data(num_samples=125)
     #     print(data)
+
+    ### =========================== 新增新增VR游戏通信控制模块测试 ============================ ###
+    # SOCKET_HOST = "localhost"  # Socket 目标 IP
+    # SOCKET_PORT = 12345  # Socket 目标端口
+    # server_socket, client_socket = command_output(SOCKET_HOST, SOCKET_PORT)
+    # while True:
+    #     command = input("Enter command (1, 2, 3, 4) or 'exit' to quit: ")
+    # 
+    #     if command.lower() == 'exit':
+    #         break
+    #     if command in ['1', '2', '3', '4']:
+    #         message = command.encode('ascii')  # 转换为字节
+    #         client_socket.send(message)
+    #         print(f"Sent: {command}")
+    #     else:
+    #         print("Invalid command! Use 1, 2, 3, 4, or exit.")
+    # 
+    #     # 接收客户端的到达指令
+    #     try:
+    #         socket_data = client_socket.recv(1024).decode('ascii')
+    #         if socket_data:
+    #             print(f"Received from client: {socket_data}")
+    #     except:
+    #         print("Error receiving data")
