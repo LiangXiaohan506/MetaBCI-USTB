@@ -15,7 +15,7 @@ from sklearn.preprocessing import StandardScaler
 import warnings
 import pylsl
 import time
-import socket
+from metabci.brainflow.workers import command_output
 from torch.nn.functional import softmax
 import keyboard
 warnings.filterwarnings('ignore')
@@ -124,15 +124,7 @@ if __name__ == "__main__":
     model.eval()
 
     # 2. 初始化 Socket
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        server_socket.bind(( SOCKET_HOST, SOCKET_PORT))
-        server_socket.listen(1)
-        print(f"Server listening on {SOCKET_HOST}:{SOCKET_PORT}")
-        client_socket, address = server_socket.accept()
-        print(f"Connected by {address}")
-    except Exception as e:
-        raise RuntimeError(f"Socket 连接失败: {e}")
+    server_socket, client_socket = command_output(SOCKET_HOST, SOCKET_PORT)
 
     # 3. 初始化 LSL EEG 数据流
     print(f"正在搜索 LSL EEG 流: {LSL_EEG_STREAM_NAME}...")
