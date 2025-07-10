@@ -596,21 +596,10 @@ def entropy_feature(X, y, srate=1000, ch_names=None):
 
 if __name__ == '__main__':
 
-    ### =========================== 新增熵特征提取方法测试 ============================ ###
-    # srate = 256
-    # subjects = [1]
-    # pick_chs = ['FC5', 'FC3', 'FC1', 'FCz', 'FC2',
-    #             'FC4', 'FC6', 'C5', 'C3', 'C1', 'Cz', 'C2', 'C4', 'C6',
-    #             'CP5', 'CP3', 'CP1', 'CPz', 'CP2', 'CP4', 'CP6', 'P5',
-    #             'P3', 'P1', 'Pz', 'P2', 'P4', 'P6']
-    # X, y, meta = get_data(srate=srate, subjects=subjects, pick_chs=pick_chs)
-    # actual_n_channels = X.shape[1]
-    # if len(pick_chs) >= actual_n_channels:
-    #     actual_channels = pick_chs[:actual_n_channels]
-    # else: # 如果预定义通道数不够，添加额外的通道名
-    #     actual_channels = pick_chs + [f"Extra_Ch{i}" for i in range(len(pick_chs), actual_n_channels)]
-    # print(f"实际使用的通道名称: {actual_channels}")
-    # entropy_feature(X, y, srate, ch_names=actual_channels)
+    ### =========================== 新增ustb2025mi4c数据加载功能测试 ============================ ###
+    # dataset = USTB2025MI4C()
+    # data = dataset._get_single_subject_data(subject=1)  # 读取被试1的数据
+    # print(data)
 
     ### =========================== 新增脑电解码模型在fit模式下训练与推理测试 ============================ ###
     # srate = 256
@@ -645,10 +634,21 @@ if __name__ == '__main__':
     # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=20250702, stratify=y)
     # model_visualization(model_name="EEG_Conformer", y_test=y_test, channels=actual_channels, subject=subjects)
 
-    ### =========================== 新增ustb2025mi4c数据加载功能测试 ============================ ###
-    # dataset = USTB2025MI4C()
-    # data = dataset._get_single_subject_data(subject=1)  # 读取被试1的数据
-    # print(data)
+    ### =========================== 新增熵特征提取方法测试 ============================ ###
+    # srate = 256
+    # subjects = [1]
+    # pick_chs = ['FC5', 'FC3', 'FC1', 'FCz', 'FC2',
+    #             'FC4', 'FC6', 'C5', 'C3', 'C1', 'Cz', 'C2', 'C4', 'C6',
+    #             'CP5', 'CP3', 'CP1', 'CPz', 'CP2', 'CP4', 'CP6', 'P5',
+    #             'P3', 'P1', 'Pz', 'P2', 'P4', 'P6']
+    # X, y, meta = get_data(srate=srate, subjects=subjects, pick_chs=pick_chs)
+    # actual_n_channels = X.shape[1]
+    # if len(pick_chs) >= actual_n_channels:
+    #     actual_channels = pick_chs[:actual_n_channels]
+    # else: # 如果预定义通道数不够，添加额外的通道名
+    #     actual_channels = pick_chs + [f"Extra_Ch{i}" for i in range(len(pick_chs), actual_n_channels)]
+    # print(f"实际使用的通道名称: {actual_channels}")
+    # entropy_feature(X, y, srate, ch_names=actual_channels)
 
     ### =========================== 新增OpenBCI设备支持代码的测试 ============================ ###
     # params = OpenBCIInputParams()
