@@ -16,7 +16,9 @@ import os
 import multiprocessing
 import queue
 from .logger import get_logger
-
+### ==============================添加内容=============================== ###
+import socket
+### ==============================添加内容=============================== ###
 logger = get_logger("worker")
 
 
@@ -272,3 +274,26 @@ class ProcessWorker(multiprocessing.Process):
                 self.worker_name if self.worker_name else os.getpid()
             )
         )
+
+### ==============================添加内容=============================== ###
+def command_output(SOCKET_HOST, SOCKET_PORT):
+    """Socket 接收命令输出
+
+    author: Guangjin Liang <3330635482@qq.com>
+
+    Created on: 2025-06-11
+
+    update log:
+        2025-07-1 by Guangjin Liang <3330635482@qq.com>: Initial implementation.
+    """
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        server_socket.bind((SOCKET_HOST, SOCKET_PORT))
+        server_socket.listen(1)
+        print(f"Server listening on {SOCKET_HOST}:{SOCKET_PORT}")
+        client_socket, address = server_socket.accept()
+        print(f"Connected by {address}")
+        return server_socket, client_socket
+    except Exception as e:
+        raise RuntimeError(f"Socket 连接失败: {e}")
+### ==============================添加内容=============================== ###
