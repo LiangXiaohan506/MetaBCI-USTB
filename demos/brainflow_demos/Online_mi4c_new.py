@@ -103,7 +103,7 @@ def offline_validation_new(X, y, subject, X_test=None, y_test=None):
     model = model.module.to(dtype=torch.float32).to(device)
      ###============================ Initialization parameters ============================###
     kfolds = 5
-    model_savePath = "checkpoints\\{}\\Subject_0{}".format(model_name+"_ustb2025mi4c", str(subject[0]))
+    model_savePath = "checkpoints\\{}\\Subject_0{}".format(model_name+"_ustb2025mi4c_CPU", str(subject[0]))
     if not os.path.exists(model_savePath):
         os.makedirs(model_savePath)
 
