@@ -136,6 +136,7 @@ if __name__ == "__main__":
 
     # 4. 数据缓存队列（用于存储最近的 EEG 数据）
     eeg_buffer = np.zeros((USED_CHANNELS-len(REF_CHANNELS), WINDOW_LENGTH_SAMPLES))  # 形状: (通道数, 样本数)
+    scaler = StandardScaler() # 标准化数据（按通道归一化）
 
     # 5. 加载离线数据，计算离线准确率
     X, y, test_feature_arr, test_label_arr = get_data_new(subjects)
@@ -203,6 +204,7 @@ if __name__ == "__main__":
                     time.sleep(0.01)
 
                 # 5秒后调用模型并发送结果
+                eeg_buffer = scaler.fit_transform(eeg_buffer)
                 input_data = eeg_buffer.reshape(1, *eeg_buffer.shape)  # 预处理（根据模型需求调整，如归一化、滤波等）添加 batch 维度
                 if isinstance(input_data, torch.Tensor):
                     X_test = input_data.to(torch.float32)
@@ -210,7 +212,7 @@ if __name__ == "__main__":
                     X_test = torch.from_numpy(input_data).to(torch.float32)
                 print('X_test shape: ', X_test.shape)
                 prediction = model(X_test)  # 假设模型有 predict() 方法
-                prediction = softmax(prediction, dim=-1).argmax(dim=-1).numpy()[0]
+                prediction = softmax(prediction, dim=-1).argmax(dim=-1).numpy()[0]+1
                 print(f"解码结果: {PREDICTION_TO_LABEL[prediction-1]}")
                 command = str(prediction)
                 message = command.encode('ascii')  # 转换为字节
